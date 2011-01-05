@@ -54,7 +54,7 @@ Create your company contact handle:
           
 server.query(company_contact.create)</code></pre>
 
-Create the domain:
+Register the domain:
 
 <pre><code>domain = CPS::Domain.new(
             :domain => 'example-domain-123456.com',
