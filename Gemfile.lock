@@ -1,0 +1,17 @@
+PATH
+  remote: .
+  specs:
+    cps-client (0.1.0)
+      always_verify_ssl_certificates (>= 0.2.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    always_verify_ssl_certificates (0.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  always_verify_ssl_certificates (>= 0.2.0)
+  cps-client!

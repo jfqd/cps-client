@@ -1,0 +1,76 @@
+h1. CPS-CLIENT
+
+Ruby api for the arp-client of cps-datensysteme.de
+
+h2. Installation
+
+<pre><code>sudo gem install cps-client
+bundle # to install dependencies</code></pre>
+
+h2. Howto register a domain
+
+Create a cps-client object:
+
+<pre><code>server = CPS::Client.new(
+            :cid => 'your-cid',
+            :uid => 'your-uid',
+            :pwd => 'your-pwd',
+            :production => false # for development
+          )</code></pre>
+
+Create a client contact handle:
+
+<pre><code>client_contact = CPS::Contact.new(
+            :object      => 'QD1234',
+            :firstname   => 'Peter',
+            :lastname    => 'Pan',
+            :street      => 'your-street',
+            :postal      => '60000',
+            :city        => 'Frankfurt am Main',
+            :state       => 'Hessen',
+            :iso_country => 'DE',
+            :phone       => '+49 69471117',
+            :fax         => '+49 69471118',
+            :email       => 'peter.pan@example.com'
+          )
+          
+server.query(client_contact.create)</code></pre>
+
+Create your company contact handle:
+
+<pre><code>company_contact = CPS::Contact.new(
+            :object      => 'QD0001',
+            :firstname   => 'Paulär',
+            :lastname    => 'Panter',
+            :street      => 'my-street',
+            :postal      => '60000',
+            :city        => 'Frankfurt am Main',
+            :state       => 'Hessen',
+            :iso_country => 'DE',
+            :phone       => '+49 69471123',
+            :fax         => '+49 69471124',
+            :email       => 'paulaer.panter@example.com'
+          )
+          
+server.query(company_contact.create)</code></pre>
+
+Create the domain:
+
+<pre><code>domain = CPS::Domain.new(
+            :domain => 'example-domain-123456.com',
+            :adminc => 'QD1234',
+            :ownerc => 'QD1234',
+            :techc  => 'QD0001',
+            :billc  => 'QD0001',
+            :ns1    => 'my1.dns.com',
+            :ns2    => 'my2.dns.com'
+          )
+
+server.query(domain.create)</code></pre>
+
+h2. Todo
+
+- Add validation and error handling
+- Add modify and transfer for domains
+
+(c) 2011 jfqd [at] blun.org

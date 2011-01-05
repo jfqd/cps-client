@@ -1,0 +1,8 @@
+require 'cps-client/version'
+require 'cps-client/errors'
+require 'cps-client/config'
+require 'cps-client/erb_helper'
+require 'cps-client/client'
+require 'cps-client/contact'
+require 'cps-client/domain'
+require 'core_ext'
