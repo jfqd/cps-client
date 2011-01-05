@@ -51,7 +51,7 @@ module CPS
     
     def query( object )
       # AlwaysVerifySSLCertificates.ca_file = CA_FILE
-      url = @production == true ? URL : URL_DEV
+      url = @production == true ? URL_PRD : URL_DEV
       uri = URI.parse("#{PROTO}://#{url}:#{PORT}")
       @request = self.template(object)
       

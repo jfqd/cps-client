@@ -1,7 +1,7 @@
 module CPS
 
   PROTO   = 'https'
-  URL     = 'arpgate.cps-datensysteme.de'
+  URL_PRD = 'arpgate.cps-datensysteme.de'
   URL_DEV = 'arpote.cps-datensysteme.de'
   PORT    = 700
   PATH    = '/'
