@@ -48,4 +48,8 @@ class String
     end
   end
 
+  def blank?
+    self.nil? || self == ""
+  end
+
 end

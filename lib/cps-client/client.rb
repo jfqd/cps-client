@@ -41,7 +41,7 @@ module CPS
       @uid = options[:uid]
       @pwd = options[:pwd]
       
-      @production = options[:production] || true
+      @production = options[:production] == false ? false : true
       
       @timeout  = options[:timeout] || DEFAULT_TIMEOUT
       @request  = ""
