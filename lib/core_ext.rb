@@ -1,4 +1,5 @@
 require 'iconv'
+require 'punycode'
 
 class String
   
@@ -36,16 +37,21 @@ class String
     return s
   end
   
-  def convert_to_iso_8859_1
+  def to_punycode
+    Punycode.encode(self)
+  end
+  
+  def to_iso_8859_1
+    f = self
     begin
       i = Iconv.new('ISO-8859-1', 'UTF-8') # Iconv.new(to, from)
       f = i.iconv(self.i18n_safe)
-      i.close
-      return f
     rescue
+      # do nothing
+    ensure
       i.close
-      self
     end
+    return f
   end
 
   def blank?

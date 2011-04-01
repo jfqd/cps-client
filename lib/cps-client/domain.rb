@@ -4,7 +4,7 @@ module CPS
     attr_reader :domain
     
     def initialize(options = {})
-      @domain = options[:domain]
+      @domain = options[:domain].downcase.to_punycode
       @adminc = options[:adminc]
       @techc  = options[:techc]
       @billc  = options[:billc]

@@ -1,13 +1,15 @@
 PATH
   remote: .
   specs:
-    cps-client (0.1.0)
+    cps-client (0.0.5)
       always_verify_ssl_certificates (>= 0.2.0)
+      punycode4r (>= 0.2.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
     always_verify_ssl_certificates (0.2.0)
+    punycode4r (0.2.0)
 
 PLATFORMS
   ruby
@@ -15,3 +17,4 @@ PLATFORMS
 DEPENDENCIES
   always_verify_ssl_certificates (>= 0.2.0)
   cps-client!
+  punycode4r (>= 0.2.0)

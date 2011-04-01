@@ -2,6 +2,10 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "cps-client/version"
 
+# to publish the gem to rubygems.org run:
+# rake install
+# rake release
+
 Gem::Specification.new do |s|
   s.name        = "cps-client"
   s.version     = CPS::VERSION
@@ -13,6 +17,7 @@ Gem::Specification.new do |s|
   s.description = %q{ruby api for the arp-client of cps-datensysteme.de}
 
   s.add_dependency('always_verify_ssl_certificates', '>= 0.2.0')
+  s.add_dependency('punycode4r', '>= 0.2.0')
 
   s.rubyforge_project = "cps-client"
   

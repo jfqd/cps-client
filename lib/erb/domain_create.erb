@@ -1,16 +1,16 @@
 <group>domain</group>
 <action>create</action>
 <attribute>domain</attribute>
-<object><%= @domain.convert_to_iso_8859_1 %></object>
+<object><%= @domain %></object>
 <values>
-  <adminc><%= @adminc.convert_to_iso_8859_1 %></adminc>
-  <techc><%= @techc.convert_to_iso_8859_1 %></techc>
-  <billc><%= @billc.convert_to_iso_8859_1 %></billc>
-  <ownerc><%= @ownerc.convert_to_iso_8859_1 %></ownerc>
+  <adminc><%= @adminc %></adminc>
+  <techc><%= @techc %></techc>
+  <billc><%= @billc %></billc>
+  <ownerc><%= @ownerc %></ownerc>
   <dns>
-    <hostname><%= @ns1.convert_to_iso_8859_1 %></hostname>
+    <hostname><%= @ns1 %></hostname>
   </dns>
   <dns>
-    <hostname><%= @ns2.convert_to_iso_8859_1 %></hostname>
+    <hostname><%= @ns2 %></hostname>
   </dns>
 </values>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <request>
   <auth>
-    <cid><%= @cid.convert_to_iso_8859_1 %></cid>
-    <user><%= @uid.convert_to_iso_8859_1 %></user>
-    <pwd><%= @pwd.convert_to_iso_8859_1 %></pwd>
+    <cid><%= @cid.to_iso_8859_1 %></cid>
+    <user><%= @uid.to_iso_8859_1 %></user>
+    <pwd><%= @pwd.to_iso_8859_1 %></pwd>
   </auth>
   <transaction>
     <%= @xml %>

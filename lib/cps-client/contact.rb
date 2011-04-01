@@ -7,17 +7,17 @@ module CPS
     
     def initialize(options = {})
       @object       = options[:object].upcase
-      @firstname    = options[:firstname]
-      @lastname     = options[:lastname]
-      @orgname      = options[:orgname].nil? || options[:orgname] == "" ? "-" : options[:orgname]
-      @street       = options[:street]
+      @firstname    = options[:firstname].to_punycode
+      @lastname     = options[:lastname].to_punycode
+      @orgname      = options[:orgname].nil? || options[:orgname] == "" ? "-" : options[:orgname].to_punycode
+      @street       = options[:street].to_punycode
       @postal       = options[:postal]
-      @city         = options[:city]
-      @state        = options[:state]
+      @city         = options[:city].to_punycode
+      @state        = options[:state].to_punycode
       @iso_country  = options[:iso_country]
       @phone        = options[:phone]
       @fax          = options[:fax]
-      @email        = options[:email]
+      @email        = options[:email].to_punycode
       @privacy_rule = options[:privacy_rule] || ""
       @contact_type = @orgname == '-' ? "person" : "organisation"
     end
