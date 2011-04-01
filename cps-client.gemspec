@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('always_verify_ssl_certificates', '>= 0.2.0')
   s.add_dependency('punycode4r', '>= 0.2.0')
+  s.add_dependency('domainatrix', '>= 0.0.7')
 
   s.rubyforge_project = "cps-client"
   

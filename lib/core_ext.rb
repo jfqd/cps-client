@@ -1,20 +1,34 @@
 require 'iconv'
 require 'punycode'
+require 'domainatrix'
 
 class String
   
   CONVERTION_TABLE = {
     'Ç'       => 'C',
     'ç'       => 'c',
-    '[ûúù]'   => 'u',
-    '[éêëè]'  => 'e',
-    '[âàåá]'  => 'a',
-    '[ïîìí]'  => 'i',
-    '[Å]'     => 'A',
+    'û'       => 'u',
+    'ú'       => 'u',
+    'ù'       => 'u',
+    'é'       => 'e',
+    'ê'       => 'e',
+    'ë'       => 'e',
+    'è'       => 'e',
+    'â'       => 'a',
+    'à'       => 'a',
+    'å'       => 'a',
+    'á'       => 'a',
+    'ï'       => 'i',
+    'î'       => 'i',
+    'ì'       => 'i',
+    'í'       => 'i',
+    'Å'       => 'A',
     'É'       => 'E',
     'æ'       => 'ae',
     'Æ'       => 'Ae',
-    '[ôòó]'   => 'o',
+    'ô'       => 'o',
+    'ò'       => 'o',
+    'ó'       => 'o',
     'Ä'       => 'Ae',
     'Ö'       => 'Oe',
     'Ü'       => 'Ue',
@@ -38,24 +52,40 @@ class String
   end
   
   def to_punycode
-    Punycode.encode(self)
+    result = self
+    if self.match(/@/)
+      name   = self.split('@')[0]
+      url    = Domainatrix.parse("http://"+self.split('@')[1]) # Domainatrix needs a protocol...
+      result = "#{name}@#{url.domain.domain_to_punycode}.#{url.public_suffix}"
+    elsif self.match(/./)
+      url    = Domainatrix.parse("http://"+self)
+      result = "#{url.domain.domain_to_punycode}.#{url.public_suffix}"
+    end
+    return result
   end
   
   def to_iso_8859_1
-    f = self
     begin
       i = Iconv.new('ISO-8859-1', 'UTF-8') # Iconv.new(to, from)
-      f = i.iconv(self.i18n_safe)
+      i.iconv(self.i18n_safe)
     rescue
-      # do nothing
+      self
     ensure
       i.close
     end
-    return f
   end
-
+  
   def blank?
     self.nil? || self == ""
   end
-
+  
+  def domain_to_punycode
+    p = Punycode.encode(self)
+    unless p.match(/-$/)
+      "xn--#{p}"
+    else
+      p.sub(/-$/, "")
+    end
+  end
+  
 end
