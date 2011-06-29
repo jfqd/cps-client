@@ -6,6 +6,9 @@ require "cps-client/version"
 # rake build
 # gem push pkg/cps-client-0.0.2.gem
 
+# to install locally from gem run:
+# gem install pkg/cps-client-0.0.2.gem
+
 Gem::Specification.new do |s|
   s.name        = "cps-client"
   s.version     = CPS::VERSION
