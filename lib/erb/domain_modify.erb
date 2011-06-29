@@ -1,0 +1,17 @@
+<group>domain</group>
+<action>modify</action>
+<attribute>domain</attribute>
+<object><%= @domain %></object>
+<values>
+  <adminc><%= @adminc %></adminc>
+  <techc><%= @techc %></techc>
+  <billc><%= @billc %></billc>
+  <ownerc><%= @ownerc %></ownerc>
+  <dns>
+    <hostname><%= @ns1 %></hostname>
+  </dns>
+  <dns>
+    <hostname><%= @ns2 %></hostname>
+  </dns>
+  <auth_info><%= @auth_info %></auth_info>
+</values>

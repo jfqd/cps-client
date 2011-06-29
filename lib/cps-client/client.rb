@@ -87,7 +87,6 @@ module CPS
     end
     
     def entity(path)
-      # Rails.logger.warn("result xml= #{@data}")
       d = Document.new(@data)
       d.root.elements[path].text rescue ""
     end
