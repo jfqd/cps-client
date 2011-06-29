@@ -1,7 +1,7 @@
 require 'net/https'
 require 'uri'
 require 'rexml/document'
-require 'always_verify_ssl_certificates'
+# require 'always_verify_ssl_certificates'
 
 module CPS
 
@@ -10,6 +10,9 @@ module CPS
     
     # The Integer maximum time to run a cps query, expressed in seconds.
     DEFAULT_TIMEOUT = 10
+    
+    # crt file - deployed by puppet!
+    CA_FILE = '/etc/ssl/certs/bundle.crt'
     
     # Initializes a new <tt>Cps::Client</tt> with <tt>options</tt>.
     #
@@ -49,6 +52,14 @@ module CPS
       @data     = ""
     end
     
+    #
+    # ==== Returns
+    #
+    # true:  if the call was successful
+    # false: if the call failed
+    #
+    #
+    #
     def query( object )
       # AlwaysVerifySSLCertificates.ca_file = CA_FILE
       url = @production == true ? URL_PRD : URL_DEV
@@ -61,7 +72,7 @@ module CPS
         req = Net::HTTP::Post.new( PATH )
         @response, @data = http.request(req, @request)
         self.result_code == '1000' ? true : false
-      rescue
+      rescue # OpenSSL::SSL::SSLError
         false
       end
       
@@ -76,6 +87,7 @@ module CPS
     end
     
     def entity(path)
+      # Rails.logger.warn("result xml= #{@data}")
       d = Document.new(@data)
       d.root.elements[path].text rescue ""
     end

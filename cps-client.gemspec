@@ -3,8 +3,8 @@ $:.push File.expand_path("../lib", __FILE__)
 require "cps-client/version"
 
 # to publish the gem to rubygems.org run:
-# rake install
-# rake release
+# rake build
+# gem push pkg/cps-client-0.0.2.gem
 
 Gem::Specification.new do |s|
   s.name        = "cps-client"

@@ -11,6 +11,8 @@ module CPS
       @ownerc = options[:ownerc]
       @ns1    = options[:ns1]
       @ns2    = options[:ns2]
+      @reg_type  = options[:reg_type] ||= 'transfer'
+      @auth_info = options[:auth_info] ||= ''
     end
     
     def create
@@ -19,6 +21,10 @@ module CPS
 
     def info
       ErbHelper.build("domain_info", self)
+    end
+
+    def transfer
+      ErbHelper.build("domain_transfer", self)
     end
 
     def delete
