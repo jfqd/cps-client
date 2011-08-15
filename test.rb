@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + '/lib/cps-client.rb'
+# For ruby uft8-support
+require 'jcode'
+$KCODE = 'u'
 
-DELETE_DOMAIN == false
+require 'rubygems'
+require 'cps-client'
+
+DELETE_DOMAIN = false
 
 CID = 'your-cid'
 UID = 'your-uid'
