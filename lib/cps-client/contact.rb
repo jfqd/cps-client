@@ -7,16 +7,16 @@ module CPS
     
     def initialize(options = {})
       @object       = options[:object].upcase
-      @firstname    = options[:firstname].to_iso_8859_1 rescue nil
-      @lastname     = options[:lastname].to_iso_8859_1  rescue nil
-      @orgname      = options[:orgname].nil? || options[:orgname] == "" ? "-" : options[:orgname].to_iso_8859_1 rescue nil
-      @street       = options[:street].to_iso_8859_1    rescue nil
-      @postal       = options[:postal].to_iso_8859_1    rescue nil
-      @city         = options[:city].to_iso_8859_1      rescue nil
-      @state        = options[:state].to_iso_8859_1     rescue nil
-      @iso_country  = options[:iso_country].to_iso_8859_1  rescue nil
-      @phone        = options[:phone].to_iso_8859_1     rescue nil
-      @fax          = options[:fax].to_iso_8859_1       rescue nil
+      @firstname    = options[:firstname] rescue nil
+      @lastname     = options[:lastname]  rescue nil
+      @orgname      = options[:orgname].nil? || options[:orgname] == "" ? "-" : options[:orgname] rescue nil
+      @street       = options[:street]    rescue nil
+      @postal       = options[:postal]    rescue nil
+      @city         = options[:city]      rescue nil
+      @state        = options[:state]     rescue nil
+      @iso_country  = options[:iso_country].upcase  rescue nil
+      @phone        = options[:phone]     rescue nil
+      @fax          = options[:fax]       rescue nil
       @email        = options[:email].to_punycode       rescue nil
       @privacy_rule = options[:privacy_rule] || ""
       @contact_type = @orgname == '-' ? "person" : "organisation"

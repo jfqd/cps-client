@@ -71,7 +71,7 @@ module CPS
         http.use_ssl = true if PROTO == 'https'
         req = Net::HTTP::Post.new( PATH )
         @response, @data = http.request(req, @request)
-        self.result_code == '1000' ? true : false
+        self.result_code >= '1000' && self.result_code <= '1003' ? true : false
       rescue # OpenSSL::SSL::SSLError
         false
       end

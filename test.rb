@@ -2,10 +2,16 @@
 
 require File.dirname(__FILE__) + '/lib/cps-client.rb'
 
+DELETE_DOMAIN == false
+
+CID = 'your-cid'
+UID = 'your-uid'
+PWD = 'your-pwd'
+
 server = CPS::Client.new(
-            :cid => 'your-cid',
-            :uid => 'your-uid',
-            :pwd => 'your-pwd',
+            :cid => CID,
+            :uid => UID,
+            :pwd => PWD,
             :production => false
           )
 
@@ -37,8 +43,10 @@ company_contact = CPS::Contact.new(
             :email       => 'paulaer.panter@example.com'
           )
 
+# cause of a bug in the arpote test system we need to create every time a new domain...
+domain_number = (rand() * 10000).to_i.to_s
 domain = CPS::Domain.new(
-            :domain => 'example-domain-123456.com',
+            :domain => "example-domain-#{domain_number}.com",
             :adminc => 'QD1234',
             :techc  => 'QD0001',
             :billc  => 'QD0001',
@@ -104,28 +112,35 @@ end
 #   exit 1
 # end
 
-if server.query(domain.delete)
-  puts "Domain delete: #{server.result_code}: #{server.result_message}"
-else
-  puts "Error: #{server.data}"
-  puts "#{server.result_code}: #{server.result_message} #{server.request}"
-  exit 1
-end
+# TODO: domain.transfer
+# TODO: domain.transfer_lock
 
-if server.query(client_contact.delete)
-  puts "Contact deleted: #{server.result_code}: #{server.result_message}"
-else
-  puts "Error: #{server.data}"
-  puts "#{server.result_code}: #{server.result_message}"
-  exit 1
-end
+if DELETE_DOMAIN == true
+  
+  if server.query(domain.delete)
+    puts "Domain delete: #{server.result_code}: #{server.result_message}"
+  else
+    puts "Error: #{server.data}"
+    puts "#{server.result_code}: #{server.result_message} #{server.request}"
+    exit 1
+  end
 
-if server.query(company_contact.delete)
-  puts "Contact deleted: #{server.result_code}: #{server.result_message}"
-else
-  puts "Error: #{server.data}"
-  puts "#{server.result_code}: #{server.result_message}"
-  exit 1
+  if server.query(client_contact.delete)
+    puts "Contact deleted: #{server.result_code}: #{server.result_message}"
+  else
+    puts "Error: #{server.data}"
+    puts "#{server.result_code}: #{server.result_message}"
+    exit 1
+  end
+
+  if server.query(company_contact.delete)
+    puts "Contact deleted: #{server.result_code}: #{server.result_message}"
+  else
+    puts "Error: #{server.data}"
+    puts "#{server.result_code}: #{server.result_message}"
+    exit 1
+  end
+
 end
 
 exit 0
