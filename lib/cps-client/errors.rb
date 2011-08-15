@@ -1,6 +1,11 @@
 module CPS
   
   class Errors
+    
+    def self.description(error)
+      ERRORS[error.to_s] rescue nil
+    end
+    
     ERRORS = {
       '1000' => 'Action was successfully completed.',
       '1001' => 'Action was successfully transfered to the sub system. A status update will follow soon.',
