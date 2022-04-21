@@ -1,0 +1,10 @@
+<group>domain</group>
+<action>create</action>
+<attribute>dnssec</attribute>
+<object><%= @domain %></object>
+<values>
+	<flags><%= @flags %></flags>
+	<protocol><%= @protocol %></protocol>
+	<algorithm><%= @algorithm %></algorithm>
+	<public_key><%= @public_key %></public_key>
+</values>

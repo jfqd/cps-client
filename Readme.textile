@@ -68,9 +68,20 @@ Register the domain:
 
 server.query(domain.create)</code></pre>
 
+Add a DNSKEY to a domain:
+
+<pre><code>domain = CPS::Dnssec.new(
+  :domain     => 'example-domain-123456.com',
+  :flags      => '257',
+  :protocol   => '3',
+  :algorithm  => '13',
+  :public_key => 'q17D4VK9Wl2q...xUA=='
+)
+
+server.query(dnssec.create)</code></pre>
+
 h2. Todo
 
 - Add validation and error handling
-- Add modify and transfer for domains
 
-(c) 2011 jfqd [at] blun.org
+(c) 2010-2022 jfqd [at] blun.org
