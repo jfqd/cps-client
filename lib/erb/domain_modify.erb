@@ -1,17 +1,20 @@
 <group>domain</group>
 <action>modify</action>
 <attribute>domain</attribute>
-<object><%= @domain %></object>
+<object><%=h @domain %></object>
 <values>
-  <adminc><%= @adminc %></adminc>
-  <techc><%= @techc %></techc>
-  <billc><%= @billc %></billc>
-  <ownerc><%= @ownerc %></ownerc>
+  <adminc><%=h @adminc %></adminc>
+  <techc><%=h @techc %></techc>
+  <billc><%=h @billc %></billc>
+  <ownerc><%=h @ownerc %></ownerc>
   <dns>
-    <hostname><%= @ns1 %></hostname>
+    <hostname><%=h @ns1 %></hostname>
   </dns>
   <dns>
-    <hostname><%= @ns2 %></hostname>
+    <hostname><%=h @ns2 %></hostname>
   </dns>
-  <auth_info><%= @auth_info %></auth_info>
+  <dns>
+    <hostname><%=h @ns3 %></hostname>
+  </dns>
+  <auth_info><%=h @auth_info %></auth_info>
 </values>

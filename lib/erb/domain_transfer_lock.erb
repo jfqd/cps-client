@@ -1,7 +1,7 @@
 <group>domain</group>
 <action>modify</action>
 <attribute>transfer_lock</attribute>
-<object><%= @domain %></object>
+<object><%=h @domain %></object>
 <values>
-	<status><%= @transfer_lock %></status>
+  <status><%=h @transfer_lock %></status>
 </values>
