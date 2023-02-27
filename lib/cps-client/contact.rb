@@ -7,17 +7,17 @@ module CPS
     
     def initialize(options = {})
       @object       = options[:object].upcase
-      @firstname    = options[:firstname] rescue nil
-      @lastname     = options[:lastname]  rescue nil
-      @orgname      = options[:orgname].nil? || options[:orgname] == "" ? "-" : options[:orgname] rescue nil
-      @street       = options[:street]    rescue nil
-      @postal       = options[:postal]    rescue nil
-      @city         = options[:city]      rescue nil
-      @state        = options[:state]     rescue nil
-      @iso_country  = options[:iso_country].upcase  rescue nil
-      @phone        = options[:phone]     rescue nil
-      @fax          = options[:fax]       rescue nil
-      @email        = options[:email].to_punycode       rescue nil
+      @firstname    = options[:firstname].i18n_safe.skip_nonword_characters  rescue nil
+      @lastname     = options[:lastname].i18n_safe.skip_nonword_characters   rescue nil
+      @orgname      = options[:orgname].nil? || options[:orgname] == "" ? "-" : options[:orgname].i18n_safe.skip_nonword_characters rescue nil
+      @street       = options[:street].i18n_safe.skip_nonword_characters     rescue nil
+      @postal       = options[:postal].skip_nonword_characters               rescue nil
+      @city         = options[:city].i18n_safe.skip_nonword_characters       rescue nil
+      @state        = options[:state].i18n_safe.skip_nonword_characters      rescue nil
+      @iso_country  = options[:iso_country].upcase                           rescue nil
+      @phone        = options[:phone].skip_nondigit_characters               rescue nil
+      @fax          = options[:fax].skip_nondigit_characters                 rescue nil
+      @email        = options[:email].to_punycode                            rescue nil
       @privacy_rule = options[:privacy_rule] || ""
       @contact_type = @orgname == '-' ? "person" : "organisation"
     end

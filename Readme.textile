@@ -68,6 +68,22 @@ Register the domain:
 
 server.query(domain.create)</code></pre>
 
+Tranfer a domain:
+
+<pre><code>domain = CPS::Domain.new(
+  :domain => 'example-domain-123456.com',
+  :adminc => 'QD1234',
+  :ownerc => 'QD1234',
+  :techc  => 'QD0001',
+  :billc  => 'QD0001',
+  :ns1    => 'my1.dns.com',
+  :ns2    => 'my2.dns.com',
+  :reg_type  => 'transfer',
+  :auth_info => 'Geheim0815'
+)
+
+server.query(domain.transfer)</code></pre>
+
 Add a DNSKEY to a domain:
 
 <pre><code>domain = CPS::Dnssec.new(
@@ -84,4 +100,4 @@ h2. Todo
 
 - Add validation and error handling
 
-(c) 2010-2022 jfqd [at] blun.org
+(c) 2010-2023 qutic development GmbH

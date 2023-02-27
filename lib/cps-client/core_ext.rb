@@ -42,6 +42,7 @@ class String
     'Ñ'       => 'N'
   }
 
+  # umlaut_filter
   def i18n_safe
     s = self
     return "" unless s
@@ -49,8 +50,22 @@ class String
       s = s.gsub(key, value)
     end
     return s
+  rescue
+    self
+  end
+  
+  def skip_nonword_characters
+    self.gsub(/[^-A-Za-z0-9 ]/, "")
+  rescue
+    self
   end
 
+  def skip_nondigit_characters
+    self.gsub(/[^0-9 \.\+]/, "")
+  rescue
+    self
+  end
+  
   def to_punycode
     result = self
     if self.match(/@/)

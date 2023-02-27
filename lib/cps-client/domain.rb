@@ -11,6 +11,7 @@ module CPS
       @ownerc    = options[:ownerc]
       @ns1       = options[:ns1]
       @ns2       = options[:ns2]
+      @ns3       = options[:ns3]
       @reg_type  = options[:reg_type]  ||= 'transfer'
       @auth_info = options[:auth_info] ||= ''
       @attribute = options[:attribute] ||= 'domain'
